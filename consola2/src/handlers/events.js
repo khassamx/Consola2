@@ -1,5 +1,5 @@
 const { DisconnectReason } = require('@whiskeysockets/baileys');
-const { log } = require('../../../src/utils/logger.js');
+const { log } = require('../utils/logger.js'); // RUTA ACTUALIZADA
 const { checkAntiLink } = require('../utils/antiLink.js');
 const { checkAntiArabic } = require('../utils/antiArabic.js');
 const { CREATOR_JID } = require('../config/settings.js');
