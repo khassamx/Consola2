@@ -4,7 +4,8 @@
   "description": "Bot de moderación con Baileys",
   "main": "consola2/main/index.js",
   "scripts": {
-    "start": "node consola2/main/index.js"
+    "start": "node consola2/main/index.js",
+    "start-consola2": "node consola2/main/index.js"
   },
   "keywords": [],
   "author": "",
