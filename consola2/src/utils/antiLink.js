@@ -1,4 +1,4 @@
-const { log } = require('../../../src/utils/logger.js');
+const { log, error } = require('./logger.js');
 const { CREATOR_JID } = require('../config/settings.js');
 
 const isCreator = (jid) => jid.includes(CREATOR_JID);
@@ -29,7 +29,7 @@ const checkAntiLink = async (sock, m) => {
             return false;
         }
     } catch (e) {
-        log('Error en Anti-Link: ' + e.message);
+        error('Error en Anti-Link: ' + e.message);
         return false;
     }
 };
