@@ -1,5 +1,5 @@
 const { DisconnectReason } = require('@whiskeysockets/baileys');
-const { log } = require('../utils/logger.js'); // RUTA ACTUALIZADA
+const { log, error } = require('../utils/logger.js');
 const { checkAntiLink } = require('../utils/antiLink.js');
 const { checkAntiArabic } = require('../utils/antiArabic.js');
 const { CREATOR_JID } = require('../config/settings.js');
@@ -48,7 +48,7 @@ const handleMessagesUpsert = async ({ messages }, sock) => {
                     await sock.sendMessage(groupJid, { text: `✅ Usuario @${targetJid.split('@')[0]} ha sido expulsado.` });
                     log(`Comando .kick ejecutado en ${groupJid}`);
                 } catch (e) {
-                    log('❌ Error al expulsar al usuario: ' + e.message);
+                    error('❌ Error al expulsar al usuario: ' + e.message);
                     await sock.sendMessage(m.key.remoteJid, { text: '❌ No pude expulsar al usuario. Asegúrate de que tengo los permisos necesarios.' });
                 }
             }
