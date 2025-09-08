@@ -3,7 +3,7 @@ const dayjs = require("dayjs");
 const fs = require("fs");
 const path = require("path");
 
-const logFile = path.join(__dirname, "../../../logs.txt");
+const logFile = path.join(__dirname, "../../../../logs.txt");
 
 // Función para obtener timestamp
 function timestamp() {
