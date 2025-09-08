@@ -34,10 +34,8 @@ const handleMessagesUpsert = async ({ messages }, sock) => {
         const isGroup = senderJid.endsWith('@g.us');
 
         if (isGroup) {
-            // Lógica Anti-link
             if (await checkAntiLink(sock, m)) return;
 
-            // Lógica para el comando .kick manual
             if (isCreator(m.key.participant || m.key.remoteJid) && messageText.startsWith('.kick')) {
                 try {
                     const groupJid = m.key.remoteJid;
