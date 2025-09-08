@@ -1,4 +1,4 @@
-const { log } = require('../../../src/utils/logger.js');
+const { log, error } = require('./logger.js');
 const { ARABIC_PREFIXES } = require('../config/settings.js');
 
 const checkAntiArabic = async (sock, groupJid, participantJid) => {
@@ -11,7 +11,7 @@ const checkAntiArabic = async (sock, groupJid, participantJid) => {
             log(`🚫 Anti-Árabe: Usuario con código '${countryCode}' expulsado de [${groupJid}].`);
             return true;
         } catch (e) {
-            log(`Error en Anti-Árabe al expulsar: ${e.message}`);
+            error(`Error en Anti-Árabe al expulsar: ${e.message}`);
             return false;
         }
     }
