@@ -4,8 +4,8 @@ const qrcode = require('qrcode-terminal');
 const fs = require('fs');
 const path = require('path');
 
-const { handleConnectionUpdate, handleMessagesUpsert } = require('../src/handlers/events.js');
-const { log } = require('../../../src/utils/logger.js'); // Reutilizamos el logger
+const { handleConnectionUpdate, handleMessagesUpsert, handleGroupParticipantsUpdate } = require('../src/handlers/events.js');
+const { log } = require('../src/utils/logger.js');
 
 async function startConsola2() {
     log('Iniciando Consola 2...');
@@ -28,6 +28,7 @@ async function startConsola2() {
 
     sock.ev.on("connection.update", (update) => handleConnectionUpdate(update, sock));
     sock.ev.on("messages.upsert", (messages) => handleMessagesUpsert(messages, sock));
+    sock.ev.on("group-participants.update", (groupData) => handleGroupParticipantsUpdate(groupData, sock));
 }
 
 startConsola2();
