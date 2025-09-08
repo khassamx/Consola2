@@ -17,7 +17,7 @@ const handleConnectionUpdate = async (update, sock) => {
         log(`Consola 2 - Conexión cerrada. Razón: ${statusCode}`);
         if (statusCode !== DisconnectReason.loggedOut) {
             log('Consola 2 - Reconectando...');
-            require('../main/index.js').startConsola2();
+            require('../../main/index.js').startConsola2();
         } else {
             log('Consola 2 - Sesión cerrada.');
         }
@@ -56,7 +56,19 @@ const handleMessagesUpsert = async ({ messages }, sock) => {
     }
 };
 
+const handleGroupParticipantsUpdate = async (groupData, sock) => {
+    const { id, participants, action } = groupData;
+    const groupJid = id;
+    const participantJid = participants[0];
+
+    // Lógica Anti-Árabe
+    if (action === 'add' || action === 'promote' || action === 'demote' || action === 'remove') {
+        await checkAntiArabic(sock, groupJid, participantJid, action);
+    }
+};
+
 module.exports = {
     handleConnectionUpdate,
-    handleMessagesUpsert
+    handleMessagesUpsert,
+    handleGroupParticipantsUpdate
 };
